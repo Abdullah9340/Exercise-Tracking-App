@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Exercise = require("../models/excerise.model");
 
 router.route("/").get((req, res) => {
-  Excerise.find()
+  Exercise.find()
     .then((exercises) => res.json(exercises))
     .catch((err) => res.status(400).json("Error " + err));
 });
@@ -33,13 +33,13 @@ router.route("/:id").get((req, res) => {
 });
 
 router.route("/:id").delete((req, res) => {
-  Excerise.findByIdAndDelete(req.params.id)
+  Exercise.findByIdAndDelete(req.params.id)
     .then(() => res.json("Exercise deleted"))
     .catch((err) => res.status(400).json("Error" + err));
 });
 
 router.route("/update/:id").post((req, res) => {
-  Excerise.findById(req.params.id)
+  Exercise.findById(req.params.id)
     .then((exercise) => {
       exercise.username = req.body.username;
       exercise.description = req.body.description;
